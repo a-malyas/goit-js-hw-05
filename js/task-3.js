@@ -1,27 +1,21 @@
 class Storage {
     constructor(items) {
-        this._items = items;
+        this.items = items;
     }
 
     getItems() {
-        return this._items;
+        return this.items;
     }
 
     addItem(item) {
-        if (this._items.includes(item)) return;
+        if (this.items.includes(item)) return;
                 
-        this._items.push(item);        
+        this.items.push(item);        
     }
 
-    removeItem(itemToDelete) {
-        const newItem = [];
-
-        for (const item of this._items) {
-            if (item === itemToDelete) continue;
-                
-            newItem.push(item)
-        }
-        this._items = newItem;
+    removeItem(item) {
+        const index = this.items.indexOf(item);
+        if (index !== -1) this.items.splice(index, 1);
     }
 }
 
@@ -36,7 +30,7 @@ const items = storage.getItems();
 console.table(items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор" ]
 
 storage.addItem('Дроид');
-console.table(storage.getItems()); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор", "Дроид" ]
+console.table(storage.items); // [ "Нанитоиды", "Пролонгер", "Железные жупи", "Антигравитатор", "Дроид" ]
 
 storage.removeItem('Пролонгер');
-console.table(storage.getItems()); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
+console.table(storage.items); // [ "Нанитоиды", "Железные жупи", "Антигравитатор", "Дроид" ]
